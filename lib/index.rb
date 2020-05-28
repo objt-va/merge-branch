@@ -18,7 +18,9 @@ service = MergeBrachService.new(inputs, @event)
 
 if service.valid?
   @client = Octokit::Client.new(access_token: @github_token)
-  @branch = @head_to_merge.split("/")[2]
+  @ar = @head_to_merge.split("/")[2]
+  @ar = @branch.drop(2)
+  @branch = @ar.join("/")
   @client.merge(@repository, inputs[:target_branch], @head_to_merge, {"commit_message" => "Merge " + @branch})
   puts "Finish merge branch to #{inputs[:target_branch]}"
 else
