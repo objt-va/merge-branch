@@ -21,7 +21,7 @@ if service.valid?
   @ar = @head_to_merge.split("/")
   @ar = @ar.drop(2)
   @branch = @ar.join("/")
-  @client.merge(@repository, inputs[:target_branch], @head_to_merge, {"commit_message" => "Merge " + @branch})
+  @client.merge(@repository, inputs[:target_branch], @head_to_merge, {"commit_message" => "Merge branch '" + @branch + "'"})
   puts "Finish merge branch to #{inputs[:target_branch]}"
 else
   puts 'Skip'
